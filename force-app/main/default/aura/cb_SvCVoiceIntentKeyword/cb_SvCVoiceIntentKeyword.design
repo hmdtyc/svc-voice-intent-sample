@@ -1,0 +1,3 @@
+<design:component >
+    <design:attribute name="minimumChars" label="Minimum characters of a transcript required to send a request to Einstein Intent API" />
+</design:component>

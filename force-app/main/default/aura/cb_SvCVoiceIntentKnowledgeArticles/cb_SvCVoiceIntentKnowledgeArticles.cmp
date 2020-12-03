@@ -1,0 +1,57 @@
+<aura:component controller="CB_SvCVoiceIntentKeywordController">
+    <lightning:workspaceAPI aura:id="workspace" />
+    <aura:attribute name="keyword" type="String" default="" />
+    <aura:attribute name="articles" type="Object[]" default="[]"/>
+    <aura:attribute name="timezone" type="String" />
+    <aura:handler name="change" value="{!v.keyword}" action="{!c.change}"/>
+    <ul class="slds-m-around_medium">
+        <div class="listContent">
+            <ul class="slds-has-dividers--bottom">
+                <aura:iteration items="{!v.articles}" var="article">
+                    <li class="kbResultStencil slds-item slds-var-p-vertical_small forceKnowledgeKbResultStencilDesktop forceRecordLayout" data-aura-class="forceKnowledgeKbResultStencilDesktop forceRecordLayout">
+                        <div class="kbResultStencilItemContainer">
+                            <div class="slds-tile kbStencilRecord">
+                                <div class="slds-truncate slds-var-p-bottom_xxx-small">
+                                    <div class="outputLookupContainer forceOutputLookupWithPreview" data-aura-class="forceOutputLookupWithPreview">
+                                        <a onclick="{!c.clickDetail}" class="itemTitle textUnderline outputLookupLink slds-truncate forceOutputLookup" data-refid="recordId" data-special-link="true" data-navigable="true" data-record-id="{!article.articleVersion.Id}" target="_blank" rel="noreferrer" title="" data-aura-class="forceOutputLookup" data-proxy-id="aura-pos-lib-1" >
+                                            {!article.articleVersion.Title}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="slds-tile__detail slds-text-body--small slds-var-p-bottom_xxx-small articleMetaData">
+                                    <ul class="slds-list--horizontal slds-wrap slds-has-dividers--right">
+                                        <li class="slds-item">
+                                            <span class="uiOutputText" data-aura-class="uiOutputText">{!article.articleVersion.ArticleNumber}</span>
+                                        </li>
+                                        <li class="slds-hide">
+                                            <span class="uiOutputText" data-aura-class="uiOutputText"></span>
+                                        </li>
+                                        <li class="slds-item" >Last Published &nbsp;
+                                            <span class="uiOutputDate" data-aura-class="uiOutputDate">
+                                                <lightning:formattedDateTime
+                                                value="{!article.articleVersion.LastPublishedDate}"
+                                                year="numeric"
+                                                day="2-digit"
+                                                month="short"
+                                                hour="2-digit"
+                                                minute="2-digit"
+                                                timeZone="{!v.timezone}"
+                                                >
+                                            </lightning:formattedDateTime>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="resultBody">
+                                    <lightning:formattedRichText
+                                        value="{!article.snippet}"
+                                    ></lightning:formattedRichText>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </aura:iteration>
+            </ul>
+        </div>
+    </ul>
+</aura:component>	

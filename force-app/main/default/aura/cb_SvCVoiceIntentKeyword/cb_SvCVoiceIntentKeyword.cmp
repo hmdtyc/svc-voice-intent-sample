@@ -1,0 +1,64 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="CB_SvCVoiceIntentKeywordController">
+    <!-- subscribe to service cloud voice toolkit api -->
+    <force:serviceCloudVoiceToolkitApi aura:id="voiceToolkitApi"/>
+    <force:recordData recordId="{!v.recordId}" layoutType="FULL" targetFields="{!v.record}" fields="VendorCallKey"/>
+    <aura:attribute name="isListnerSet" type="Boolean" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    <aura:handler name="destroy" value="{!this}" action="{!c.onDestroy}"/>
+    <!-- attributes -->
+    <aura:attribute name="minimumChars" type="Integer" default="20" />
+    <aura:attribute name="maximumLabels" type="Integer" default="5" />
+    <aura:attribute name="lastTranscript" type="Object" default="{}"/>
+    <aura:attribute name="message" type="String" default="No events received yet."/>
+    <aura:attribute name="transcript" type="String" default="No transcripts received yet."/>
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="labels" type="Object[]" default="[]"/>
+    <aura:attribute name="keyword" type="String" default=""/>
+    <force:recordData aura:id="recordData" recordId="{!v.recordId}" layoutType="FULL" targetFields="{!v.record}" fields="Name,VendorCallKey"/>
+
+    <article class="slds-card">
+        <div class="slds-grid slds-einstein-header slds-card__header">
+          <header class="slds-media slds-media_center slds-has-flexi-truncate">
+            <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+              <div class="slds-media__body">
+                <h2 class="slds-truncate" title="Knowledge Keyword Suggestion">
+                    <span class="slds-text-heading_small slds-card__header-title">Knowledge Keyword Suggestion</span>
+                </h2>
+              </div>
+            </div>
+            <div class="slds-einstein-header__figure slds-size_1-of-4 slds-medium-size_1-of-3"></div>
+          </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <div aura:id="label-wrapper" class="labels slds-p-around_small">
+                <aura:iteration items="{!v.labels}" var="label" indexVar="index">
+                    <div id="{!globalId + label.id}" data-label="{!label.label}" class="{! 'label label0' + label.index + ' ' + label.scale + ' ' + label.class}" onclick="{!c.click}">
+                        <p>{!label.label}</p>
+                    </div>
+                </aura:iteration>
+            </div>
+        </div>
+        <footer class="slds-card__footer">
+        </footer>
+    </article>
+    <lightning:card title="Test Intent">
+        <div class="slds-p-horizontal_small">
+            <div class="search-section">
+                <lightning:input aura:id="transcript" type="text" label="Transcript" placeholder="Input Sample Transcript"></lightning:input>
+                <lightning:buttonIcon iconName="utility:engage" variant="neutral" onclick="{!c.transcript}" class="slds-m-left_x-small"></lightning:buttonIcon>
+                <lightning:buttonIcon iconName="utility:refresh" variant="neutral" onclick="{!c.refresh}" class="slds-m-left_x-small"></lightning:buttonIcon>
+            </div>
+        </div>
+    </lightning:card>
+
+    <lightning:card title="Knowledge">
+        <div class="slds-p-horizontal_small">
+            <div class="search-section">
+                <lightning:input aura:id="input" type="text" label="Keyword" placeholder="Search Knowledge"></lightning:input>
+                <lightning:buttonIcon iconName="utility:search" variant="neutral" onclick="{!c.search}" class="slds-m-left_x-small"></lightning:buttonIcon>
+            </div>
+            <c:cb_SvCVoiceIntentKnowledgeArticles keyword="{!v.keyword}"/>
+        </div>
+    </lightning:card>
+</aura:component>	

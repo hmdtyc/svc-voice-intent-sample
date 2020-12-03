@@ -1,0 +1,96 @@
+.THIS .slds-card__header-title {
+  font-weight: bold;
+}
+.THIS .labels {
+  position: relative;
+  overflow: hidden;
+  height: 10rem;
+  min-height: 10rem;
+  border: 1px solid lightgray;
+  border-radius: 0.25rem;
+  background: #fbfbfb;
+}
+.THIS .label {
+  position: absolute;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: bolder;
+  color: rgba(0, 112, 210, 1);
+  padding: 0.5rem 0.5rem;
+  border: 2px solid rgba(0, 112, 210, 0.9);
+  border-radius: 1rem;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.5s linear;
+}
+.THIS .label:hover {
+  z-index: 10 !important;
+  background-color: #f0fbff;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.2s !important;
+}
+.THIS .label.scale1 {
+  z-index: 1;
+  transform: scale(1);
+}
+.THIS .label.scale2 {
+  z-index: 2;
+  transform: scale(1.2);
+}
+.THIS .label.scale3 {
+  z-index: 3;
+  transform: scale(1.5);
+}
+.THIS .label.label00 {
+  top: 37%;
+  left: 28%;
+}
+.THIS .label.label01 {
+  top: 10%;
+  right: 8%;
+}
+.THIS .label.label02 {
+  top: 8%;
+  left: 5%;
+}
+.THIS .label.label03 {
+  bottom: 5%;
+  left: 15%;
+}
+.THIS .label.label04 {
+  bottom: 10%;
+  right: 10%;
+}
+.THIS .label.show {
+  opacity: 1;
+}
+.THIS .label.fadein {
+  animation-name: fadein;
+  animation-duration: 1s;
+  opacity: 1;
+}
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.THIS .label.fadeout {
+  animation-name: fadeout !important;
+  animation-duration: 1s !important;
+  opacity: 0;
+}
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.THIS .search-section {
+  display: flex;
+  align-items: flex-end;
+}
