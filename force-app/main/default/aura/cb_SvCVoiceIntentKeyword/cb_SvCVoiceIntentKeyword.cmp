@@ -42,6 +42,8 @@
         <footer class="slds-card__footer">
         </footer>
     </article>
+
+    <!-- Uncomment to test Einstein Intent without actual transcripts
     <lightning:card title="Test Intent">
         <div class="slds-p-horizontal_small">
             <div class="search-section">
@@ -51,6 +53,7 @@
             </div>
         </div>
     </lightning:card>
+    -->
 
     <lightning:card title="Knowledge">
         <div class="slds-p-horizontal_small">
